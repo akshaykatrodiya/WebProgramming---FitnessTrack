@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
 //import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
@@ -11,6 +12,15 @@ import { SupplementationComponent } from './supplementation/supplementation.comp
 import { MotivationComponent } from './motivation/motivation.component';
 import { FooterComponent } from './footer/footer.component';
 
+const appRoutes: Routes = [
+  {path:'', redirectTo:'/home', pathMatch:'full'},
+  {path:'topSlider', component:TopsliderComponent},
+  {path:'coaching', component:TilesmenuComponent},
+  {path:'nutrition', component:NutritionComponent},
+  {path:'supplementation', component:SupplementationComponent},
+  {path:'motivation', component:MotivationComponent},
+  {path:'footer', component:FooterComponent}
+];
 
 @NgModule({
   declarations: [
@@ -24,7 +34,8 @@ import { FooterComponent } from './footer/footer.component';
     FooterComponent
   ],
   imports: [
-    BrowserModule//,
+    BrowserModule,
+    RouterModule.forRoot(appRoutes)
    // NgbModule
   ],
   providers: [],
