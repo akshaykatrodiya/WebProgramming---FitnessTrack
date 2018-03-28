@@ -6,16 +6,16 @@ import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
 import { TopsliderComponent } from './topslider/topslider.component';
-import { TilesmenuComponent } from './tilesmenu/tilesmenu.component';
+import { CoachingComponent } from './coaching/coaching.component';
 import { NutritionComponent } from './nutrition/nutrition.component';
 import { SupplementationComponent } from './supplementation/supplementation.component';
 import { MotivationComponent } from './motivation/motivation.component';
 import { FooterComponent } from './footer/footer.component';
 
 const appRoutes: Routes = [
-  {path:'', redirectTo:'/home', pathMatch:'full'},
+  {path:'', redirectTo:'/topslider', pathMatch:'full'},
   {path:'topSlider', component:TopsliderComponent},
-  {path:'coaching', component:TilesmenuComponent},
+  {path:'coaching', component:CoachingComponent},
   {path:'nutrition', component:NutritionComponent},
   {path:'supplementation', component:SupplementationComponent},
   {path:'motivation', component:MotivationComponent},
@@ -27,7 +27,7 @@ const appRoutes: Routes = [
     AppComponent,
     NavComponent,
     TopsliderComponent,
-    TilesmenuComponent,
+    CoachingComponent,
     NutritionComponent,
     SupplementationComponent,
     MotivationComponent,
