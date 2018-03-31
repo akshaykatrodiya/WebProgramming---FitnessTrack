@@ -2,26 +2,26 @@
 <div id="topSlider" class="carousel slide" data-ride="carousel">
   <carousel class="carousel swiper-slide">
     <slide>
-      <img class="first-slide" src="../../assets/images/slider1.jpg" alt="First slide">
+      <img class="first-slide" [src]="Slider.picture[0]" alt="First slide">
       <div class="carousel-caption text-left">
-        <h1>Let's Do It!</h1>
-        <p>Nothing will work, unless you do it.</p>
+        <h1>{{Slider.heading[0]}}</h1>
+        <p>{{Slider.text[0]}}</p>
         <p><a class="btn btn-lg btn-primary" href="#" role="button">Sign up today</a></p>
       </div>
     </slide>
     <slide>
-      <img class="second-slide" src="../../assets/images/slider2.jpg" alt="Second slide">
+      <img class="second-slide" [src]="Slider.picture[1]" alt="Second slide">
       <div class="carousel-caption">
-        <h1>Your body is a reflection of your lifestyle.</h1>
-        <p>A women with a fit physique is more thn just a hot body. It shows she works hard, no money can buy it. It shows dedications, dicipline, self-respect, dignety, patiance, work-ethics and passion! That's why its attractive to me!</p>
+        <h1>{{Slider.heading[1]}}</h1>
+        <p>{{Slider.text[1]}}</p>
         <p><a class="btn btn-lg btn-primary" href="#" role="button">Learn more</a></p>
       </div>
     </slide>
     <slide>
-      <img class="third-slide" src="../../assets/images/slider3.jpg" alt="Third slide">
+      <img class="third-slide" [src]="Slider.picture[2]" alt="Third slide">
       <div class="carousel-caption text-right">
-        <p>When you're at Gym, feeling like you'll never be one of those people who look like they've been at it their entire lives, remember that - </p>
-        <h1>They All Started Somewhere.</h1>
+        <p>{{Slider.text[2]}}</p>
+        <h1>{{Slider.heading[2]}}</h1>
         <p><a class="btn btn-lg btn-primary" href="#" role="button">Browse gallery</a></p>
       </div>
     </slide>
