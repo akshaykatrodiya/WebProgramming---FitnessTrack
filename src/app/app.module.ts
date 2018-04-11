@@ -12,10 +12,11 @@ import { NutritionComponent } from './nutrition/nutrition.component';
 import { SupplementationComponent } from './supplementation/supplementation.component';
 import { MotivationComponent } from './motivation/motivation.component';
 import { FooterComponent } from './footer/footer.component';
+import { ExerciseComponent } from './exercise/exercise.component';
 
 const appRoutes: Routes = [
-  {path:'', redirectTo:'/topslider', pathMatch:'full'},
-  {path:'topSlider', component:TopsliderComponent},
+  {path:'', redirectTo:'/', pathMatch:'full'},
+  {path:'exercise', component:ExerciseComponent},
   {path:'coaching', component:CoachingComponent},
   {path:'nutrition', component:NutritionComponent},
   {path:'supplementation', component:SupplementationComponent},
@@ -32,7 +33,8 @@ const appRoutes: Routes = [
     NutritionComponent,
     SupplementationComponent,
     MotivationComponent,
-    FooterComponent
+    FooterComponent,
+    ExerciseComponent
   ],
   imports: [
     BrowserModule,
