@@ -15,16 +15,16 @@ export class ExerciseComponent implements OnInit {
 
   constructor(private http: Http) {
     http.get(this._api + "/exercise", { params : { gymgoerId: this.Me.name } }).subscribe(data=> this.Me.myExercises = data.json()) 
-    setInterval(()=> this.refresh(), 1000)
+    // setInterval(()=> this.refresh(), 1000)
   }
 
   ngOnInit() {
   }
 
-  refresh(){
-    this.http.get(this._api + "/state")
-      .subscribe(data=> this.Model = data.json())
-  }
+  // refresh(){
+  //   this.http.get(this._api + "/state")
+  //     .subscribe(data=> this.Model = data.json())
+  // }
   
   selectExercise(e: MouseEvent, text: string) {
     e.preventDefault();

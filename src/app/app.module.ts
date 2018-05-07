@@ -14,6 +14,7 @@ import { MotivationComponent } from './motivation/motivation.component';
 import { FooterComponent } from './footer/footer.component';
 import { ExerciseComponent } from './exercise/exercise.component';
 import { LoginComponent } from './login/login.component';
+import { HttpModule } from '@angular/http';
 
 const appRoutes: Routes = [
   {path:'', redirectTo:'/', pathMatch:'full'},
@@ -40,6 +41,7 @@ const appRoutes: Routes = [
   ],
   imports: [
     BrowserModule,
+    HttpModule,
     RouterModule.forRoot(appRoutes),
     CarouselModule.forRoot(),
     NgbModule.forRoot()
