@@ -13,6 +13,7 @@ import { SupplementationComponent } from './supplementation/supplementation.comp
 import { MotivationComponent } from './motivation/motivation.component';
 import { FooterComponent } from './footer/footer.component';
 import { ExerciseComponent } from './exercise/exercise.component';
+import { LoginComponent } from './login/login.component';
 
 const appRoutes: Routes = [
   {path:'', redirectTo:'/', pathMatch:'full'},
@@ -34,7 +35,8 @@ const appRoutes: Routes = [
     SupplementationComponent,
     MotivationComponent,
     FooterComponent,
-    ExerciseComponent
+    ExerciseComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
