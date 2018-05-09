@@ -1,12 +1,16 @@
-<div class="row">
+<div class="row" *ngIf="!Me">
+  <input #name /><button (click)="login(name.value)" >Sign-In</button>
+</div>
+
+<div class="row" *ngIf="Me">
 
   <div class="col-md-4">
     <div class="card" >
-      <div class="card-header" style="background-color:#d4edda">My Exercises</div>
+      <div class="card-header" style="background-color:#d4edda">My Exercises ({{Me.name}})</div>
       <ul class="list-group list-group-flush">
-        <li *ngFor="let exercise of Model.workoutExercises"  
+        <li *ngFor="let exercise of Me.myExercises"  
           (click)="selectExercise($event, exercise)"
-          [ngClass]="{ enabled: !myExercise() }"
+          [ngClass]="{ enabled: !myWorkoutExercise() }"
           class="list-group-item">
           {{exercise}}
         </li>
@@ -15,17 +19,17 @@
   </div>
 
   <div class="col-md-8">
-    <div class="card bg-success mb-3" >
+    <div class="card bg-success mb-2" >
       <div class="card-header text-white">Done Exercises</div>
       <ul class="list-group list-group-flush">
-        <li *ngFor="let exercise of Model.doneExercises" 
+        <li *ngFor="let exercise of Model.workoutExercises" 
           [ngClass]="{ 'list-group-item-success': exercise.chosen }"
           class="list-group-item d-flex justify-content-between align-items-center ">
           {{exercise.text}}
           <span *ngIf="(!iAmTheCoach() && !chosenExercise())" class="badge badge-light">hidden</span>
           <span *ngIf="chosenExercise()" class="badge badge-primary">{{exercise.gymgoerId}}</span>
-          <button *ngIf="IsEveryoneDone() && IAmTheDealer() && !ChosenQuote()"
-            (click)="quote.Chosen = true"
+          <button *ngIf="iAmTheCoach() && !chosenExercise()"
+            (click)="exercise.chosen = true"
             class="btn btn-sm btn-primary">
             Choose Exercise
           </button>
@@ -34,9 +38,9 @@
     </div>
   </div>
 
-  <div class="col-md-4">
+  <div class="col-md-4" >
     <div class="card" >
-      <div class="card-header">All Gym Goers</div>
+      <div class="card-header" style="background-color:#d4edda">All Gym Goers</div>
       <ul class="list-group list-group-flush">
         <li *ngFor="let gymgoer of Model.gymgoers" class="list-group-item">
           <img style="height: 16px; width: 16px" class="rounded">

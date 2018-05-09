@@ -2,7 +2,8 @@ export class Exercise {
 
     gymgoers: GymeGoer[] = [];
     coachId: string;
-    doneExercises: Workout[] = [];
+    workoutExercises: Workout[] = [];
+    type: string;
 }
 
 export class GymeGoer {

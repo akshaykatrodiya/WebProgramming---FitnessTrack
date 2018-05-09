@@ -10,11 +10,10 @@ import { Exercise, GymeGoer, Workout } from '../models/exercise'
 export class ExerciseComponent implements OnInit {
 
   Model = new Exercise();
-  Me = new GymeGoer();
+  Me: GymeGoer;
   private _api = "http://localhost:8080/exercise";
 
   constructor(private http: Http) {
-    http.get(this._api + "/exercise", { params : { gymgoerId: this.Me.name } }).subscribe(data=> this.Me.myExercises = data.json()) 
     // setInterval(()=> this.refresh(), 1000)
   }
 
@@ -25,12 +24,19 @@ export class ExerciseComponent implements OnInit {
   //   this.http.get(this._api + "/state")
   //     .subscribe(data=> this.Model = data.json())
   // }
+
+  login(name: string){
+    this.http.get(this._api + "/workouts", { params : { gymgoerId: name } })
+    .subscribe(data=> this.Me =  {name: name, myExercises: data.json() } )
+  }
   
   selectExercise(e: MouseEvent, text: string) {
     e.preventDefault();
-    if(this.myExercise()) return;
+    
+    //coach doen't need to do any exercise or workout
+    if(this.myWorkoutExercise()) return;
 
-    this.http.post(this._api + "/exercise", { text: text, gymgoerId: this.Me.name })
+    this.http.post(this._api + "/workouts", { text: text, gymgoerId: this.Me.name })
       .subscribe(data=> {
         if(data.json().success){
           this.Me.myExercises.splice( this.Me.myExercises.indexOf(text), 1 );
@@ -38,8 +44,8 @@ export class ExerciseComponent implements OnInit {
       }); 
   }
 
-  myExercise = () => this.Model.doneExercises.find( x => x.gymgoerId == this.Me.name );
-  chosenExercise = () => this.Model.doneExercises.find( x => x.chosen );
+  myWorkoutExercise = () => this.Model.workoutExercises.find( x => x.gymgoerId == this.Me.name );
+  chosenExercise = () => this.Model.workoutExercises.find( x => x.chosen );
   iAmTheCoach = () => this.Me.name == this.Model.coachId;
 
 }
