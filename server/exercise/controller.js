@@ -14,6 +14,12 @@ module.exports = app
     .get('/state', (req, res) => res.send(exercise) )
     .post('/workouts', (req, res) => {
         console.log(req.body);
-        exercise.selectExercise(req.body.text, req.body.gymgoerId);
+        try {
+            exercise.selectExercise(req.body.text, req.body.gymgoerId);
+            req.send({ success: true });
+        } catch(error) {
+            res.status(403).send({success: false, message: error.message})
+        }
+        
         res.send( { success: true } );
     })

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ExerciseService } from '../services/exercise.service';
 
 @Component({
   selector: 'app-login',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+  constructor(private _Exercise: ExerciseService) { }
 
   ngOnInit() {
+  }
+
+  login(name: string, password: string){
+    this._Exercise.login(name, password);
   }
 
 }

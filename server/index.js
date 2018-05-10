@@ -1,6 +1,6 @@
-var express = require('express')
+const express = require('express')
 const path = require('path')
-var app = express()
+const app = express()
 const exercise = require('./exercise/controller');
 const bodyParser = require('body-parser');
 

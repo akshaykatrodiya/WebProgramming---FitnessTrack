@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Http } from "@angular/http";
 import { Exercise, GymeGoer, Workout } from '../models/exercise'
+import { ExerciseService } from '../services/exercise.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-exercise',
@@ -13,7 +15,16 @@ export class ExerciseComponent implements OnInit {
   Me: GymeGoer;
   private _api = "http://localhost:8080/exercise";
 
-  constructor(private http: Http) {
+  constructor(
+    private http: Http,
+    private _Exercise: ExerciseService,
+    private _Router: Router
+  ) {
+    this.Me = _Exercise.Me;
+    if(!this.Me) {
+      _Router.navigate(['/login']);
+    }
+    this.signin(this.Me.name);
     // setInterval(()=> this.refresh(), 1000)
   }
 
@@ -25,16 +36,16 @@ export class ExerciseComponent implements OnInit {
   //     .subscribe(data=> this.Model = data.json())
   // }
 
-  login(name: string){
+  signin(name: string){
     this.http.get(this._api + "/workouts", { params : { gymgoerId: name } })
-    .subscribe(data=> this.Me =  {name: name, myExercises: data.json() } )
+    .subscribe(data=> this.Me.myExercises =  data.json() )
   }
   
   selectExercise(e: MouseEvent, text: string) {
     e.preventDefault();
     
     //coach doen't need to do any exercise or workout
-    if(this.myWorkoutExercise()) return;
+    if(this.myWorkoutExercise() || this.iAmTheCoach()) return;
 
     this.http.post(this._api + "/workouts", { text: text, gymgoerId: this.Me.name })
       .subscribe(data=> {

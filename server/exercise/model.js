@@ -46,7 +46,7 @@ function Exercise() {
         return exerciseStack.slice(iCurrentExercise, iCurrentExercise += 5);
     }
 
-    this.selectExercise = (text, gymgoerId) => this.doneExercises.push({ text: text, gymgoerId: playerId });
+    this.selectExercise = (text, gymgoerId) => this.workoutExercises.push({ text: text, gymgoerId: playerId });
 
     this.chooseExercise = text => {
         this.doneExercises.find(x=> x.text == text).chosen = true;

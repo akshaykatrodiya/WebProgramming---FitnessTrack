@@ -15,9 +15,11 @@ import { FooterComponent } from './footer/footer.component';
 import { ExerciseComponent } from './exercise/exercise.component';
 import { LoginComponent } from './login/login.component';
 import { HttpModule } from '@angular/http';
+import { ExerciseService } from './services/exercise.service';
 
 const appRoutes: Routes = [
   {path:'', redirectTo:'/', pathMatch:'full'},
+  {path:'login', component:LoginComponent},
   {path:'exercise', component:ExerciseComponent},
   {path:'coaching', component:CoachingComponent},
   {path:'nutrition', component:NutritionComponent},
@@ -46,7 +48,7 @@ const appRoutes: Routes = [
     CarouselModule.forRoot(),
     NgbModule.forRoot()
   ],
-  providers: [],
+  providers: [ExerciseService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
