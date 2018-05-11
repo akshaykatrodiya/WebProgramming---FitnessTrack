@@ -7,6 +7,8 @@ import { Router } from '@angular/router';
 export class ExerciseService {
 
   Me: GymeGoer;
+  token: string;
+  pic: string;
 
   constructor(
     private http: Http,
@@ -16,11 +18,18 @@ export class ExerciseService {
   }
 
   login(name: string, password: string){
-      if(password == '1234'){
-          // Log the user in
-          this.Me = { name: name, myExercises: [] };
-          this._Router.navigate(['/exercise']);
-      }
+    if(password == '1234'){
+      // Log the user in
+      this.Me = { name: name, myExercises: [] };
+      this._Router.navigate(['/exercise']);
+    }
+  }
+
+  oAuthLogin(name: string, token:string, pic: string){
+      this.Me = { name: name, myExercises: [] };
+      this.pic = pic;
+      this.token = token;
+      this._Router.navigate(['/exercise']);
   }
 
 }

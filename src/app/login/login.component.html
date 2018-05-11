@@ -41,7 +41,7 @@ button {
     margin: 8px 0;
     border: none;
     cursor: pointer;
-    width: 100%;
+    width: 20%;
 }
 
 button:hover {
@@ -165,6 +165,8 @@ span.psw {
       <input #psw type="password" placeholder="Enter Password" name="psw" required>
         
       <button (click)="login(uname.value, psw.value)">Login</button>
+      <button (click)="googlelogin()">Login with Google</button>
+      <button (click)="fblogin()">Login with Facebook</button>
       <label>
         <input type="checkbox" checked="checked" name="remember"> Remember me
       </label>
