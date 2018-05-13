@@ -41,17 +41,17 @@ function Exercise() {
 
         } else {
             this.gymgoers.push({ gymgoerId: gymgoerId, name: gymgoerId });
-            return exerciseStack.slice(iCurrentExercise, iCurrentExercise += 5);
+            // return exerciseStack.slice(iCurrentExercise, iCurrentExercise);
         }
-        return exerciseStack.slice(iCurrentExercise, iCurrentExercise += 5);
+        return exerciseStack.slice(iCurrentExercise, exerciseStack.length);
     }
 
-    this.selectExercise = (text, gymgoerId) => this.workoutExercises.push({ text: text, gymgoerId: playerId });
+    this.selectExercise = (text, gymgoerId) => this.workoutExercises.push({ text: text, gymgoerId: gymgoerId });
 
-    this.chooseExercise = text => {
-        this.doneExercises.find(x=> x.text == text).chosen = true;
-        this.coachId = this.gymgoers[this.coachId = (this.coachId + 5) % this.gymgoers.length ]
-    }
+    // this.chooseExercise = text => {
+    //     this.doneExercises.find(x=> x.text == text).chosen = true;
+    //     this.coachId = this.gymgoers[this.coachId = (this.coachId + 5) % this.gymgoers.length ]
+    // }
 
 }
 

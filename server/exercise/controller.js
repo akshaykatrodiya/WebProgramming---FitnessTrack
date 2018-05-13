@@ -16,10 +16,10 @@ module.exports = app
         console.log(req.body);
         try {
             exercise.selectExercise(req.body.text, req.body.gymgoerId);
-            req.send({ success: true });
+            res.send({ success: true });
         } catch(error) {
             res.status(403).send({success: false, message: error.message})
         }
         
-        res.send( { success: true } );
+        // res.send( { success: true } );
     })

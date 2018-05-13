@@ -23,35 +23,38 @@ export class ExerciseComponent implements OnInit {
     this.Me = _Exercise.Me;
     if(!this.Me) {
       _Router.navigate(['/login']);
+      return;
     }
     this.signin(this.Me.name);
-    // setInterval(()=> this.refresh(), 1000)
+    setInterval(()=> this.refresh(), 1000)
   }
 
   ngOnInit() {
   }
 
-  // refresh(){
-  //   this.http.get(this._api + "/state")
-  //     .subscribe(data=> this.Model = data.json())
-  // }
+  refresh(){
+    this.http.get(this._api + "/state")
+      .subscribe(data=> this.Model = data.json())
+  }
 
   signin(name: string){
     this.http.get(this._api + "/workouts", { params : { gymgoerId: name } })
     .subscribe(data=> this.Me.myExercises =  data.json() )
   }
-  
+
   selectExercise(e: MouseEvent, text: string) {
     e.preventDefault();
     
     //coach doen't need to do any exercise or workout
-    if(this.myWorkoutExercise() || this.iAmTheCoach()) return;
+    // if(this.myWorkoutExercise() || this.iAmTheCoach()) return;
 
     this.http.post(this._api + "/workouts", { text: text, gymgoerId: this.Me.name })
       .subscribe(data=> {
         if(data.json().success){
           this.Me.myExercises.splice( this.Me.myExercises.indexOf(text), 1 );
         }
+      },err=> {
+        console.log(err);
       }); 
   }
 
