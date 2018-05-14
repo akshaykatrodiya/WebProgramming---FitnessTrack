@@ -1,8 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CarouselModule } from 'ng-bootstrap/carousel';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { Component } from '@angular/core';
+import { Observable } from 'rxjs';
+import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
 
 import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
@@ -16,9 +20,15 @@ import { ExerciseComponent } from './exercise/exercise.component';
 import { LoginComponent } from './login/login.component';
 import { HttpModule } from '@angular/http';
 import { ExerciseService } from './services/exercise.service';
+import { SearchApicallService } from "./services/search-apicall.service";
+import { HomeComponent } from './home/home.component';
+import { ClickOutsideDirective } from './shared/search-drop-down.directive';
+import { SearchFilterPipe } from './shared/filter-pipe';
+
 
 const appRoutes: Routes = [
-  {path:'', redirectTo:'/', pathMatch:'full'},
+  {path:'', redirectTo:'/home', pathMatch:'full'},
+  {path:'home', component:HomeComponent},
   {path:'login', component:LoginComponent},
   {path:'exercise', component:ExerciseComponent},
   {path:'coaching', component:CoachingComponent},
@@ -30,6 +40,8 @@ const appRoutes: Routes = [
 
 @NgModule({
   declarations: [
+    ClickOutsideDirective,
+    SearchFilterPipe,
     AppComponent,
     NavComponent,
     TopsliderComponent,
@@ -39,16 +51,19 @@ const appRoutes: Routes = [
     MotivationComponent,
     FooterComponent,
     ExerciseComponent,
-    LoginComponent
+    LoginComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
     HttpModule,
     RouterModule.forRoot(appRoutes),
     CarouselModule.forRoot(),
     NgbModule.forRoot()
   ],
-  providers: [ExerciseService],
+  providers: [ExerciseService, SearchApicallService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

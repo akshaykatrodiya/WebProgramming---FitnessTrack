@@ -1,0 +1,26 @@
+<div class='width-25'></div>
+  <div class="width-half">
+    <label for="search">
+      <i class='fa fa-search icon-pos'></i>
+    </label>
+    <form [formGroup]='exerciseForm' novalidate>
+      <input id='search' placeholder="Search Exercise" (click)="openDropDown()" formControlName='search' class='input-underline search-bar' type='text' autocomplete="off">
+      <div ClickOutside (clickOutside)="openDropDown()" *ngIf='showDropDown' class="search-drop-down">
+        <div>
+          <div *ngFor="let exercise of Home.allExercises | searchFilter: getSearchValue();" class="search-results">
+            {{exercise}}
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+<div class='width-25 '></div>
+<div class="row" >
+  <div class="col-md-4" *ngFor="let exercise of Home.allExercises | searchFilter: getSearchValue();">
+    <div class="card">
+      <div class="card-body">
+        <p class="card-text">{{exercise}}</p>
+      </div>
+    </div>
+  </div>
+</div>

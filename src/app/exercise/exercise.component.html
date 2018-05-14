@@ -41,6 +41,16 @@
   <div class="col-md-4" >
     <div class="card" >
       <div class="card-header" style="background-color:#d4edda">All Gym Goers</div>
+      <form [formGroup]='gymgoerForm' novalidate>
+        <input #search placeholder="Search Gymgoer" (click)="openDropDown()" formControlName='search' class='search-bar' type='text' autocomplete="off">
+        <div ClickOutside (clickOutside)="openDropDown()" *ngIf='showDropDown' class="search-drop-down">
+          <div>
+            <div *ngFor="let gymgoer of Model.gymgoers | searchFilter: getSearchValue();" class="search-results">
+              {{gymgoer.name}}
+            </div>
+          </div>
+        </div>
+      </form>
       <ul class="list-group list-group-flush">
         <li *ngFor="let gymgoer of Model.gymgoers" class="list-group-item">
           <img style="height: 16px; width: 16px" class="rounded">

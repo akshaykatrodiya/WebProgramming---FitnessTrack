@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { ClickOutsideDirective } from '../shared/search-drop-down.directive';
+import { SearchFilterPipe } from '../shared/filter-pipe';
 import { Http } from "@angular/http";
 import { Exercise, GymeGoer, Workout } from '../models/exercise'
 import { ExerciseService } from '../services/exercise.service';
@@ -11,11 +14,14 @@ import { Router } from '@angular/router';
 })
 export class ExerciseComponent implements OnInit {
 
+  gymgoerForm: FormGroup;
   Model = new Exercise();
+  showDropDown = false;
   Me: GymeGoer;
   private _api = "http://localhost:8080/exercise";
 
   constructor(
+    private fb: FormBuilder,
     private http: Http,
     private _Exercise: ExerciseService,
     private _Router: Router
@@ -56,6 +62,25 @@ export class ExerciseComponent implements OnInit {
       },err=> {
         console.log(err);
       }); 
+  }
+
+  initForm(): FormGroup {
+    return this.gymgoerForm = this.fb.group({
+      search: [null]
+    })
+  }
+
+  openDropDown() {
+    this.showDropDown = !this.showDropDown;
+  }
+
+  getSearchValue() {
+    return this.gymgoerForm.value.search;
+  }
+
+  selectValue(value) {
+    this.gymgoerForm.patchValue({"search": value});
+    this.showDropDown = false;
   }
 
   myWorkoutExercise = () => this.Model.workoutExercises.find( x => x.gymgoerId == this.Me.name );
