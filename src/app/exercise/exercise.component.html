@@ -8,7 +8,7 @@
     <div class="card" >
       <div class="card-header" style="background-color:#d4edda">My Exercises ({{Me.name}})</div>
       <ul class="list-group list-group-flush">
-        <li *ngFor="let exercise of Me.myExercises"  
+        <li *ngFor="let exercise of Me.myExercises" style="cursor: pointer;"  
           (click)="selectExercise($event, exercise)"
           [ngClass]="{ enabled: !myWorkoutExercise() }"
           class="list-group-item">
@@ -26,13 +26,13 @@
           [ngClass]="{ 'list-group-item-success': exercise.chosen }"
           class="list-group-item d-flex justify-content-between align-items-center ">
           {{exercise.text}}
-          <span *ngIf="(!iAmTheCoach() && !chosenExercise())" class="badge badge-light">hidden</span>
-          <span *ngIf="chosenExercise()" class="badge badge-primary">{{exercise.gymgoerId}}</span>
+          <span *ngIf="(!iAmTheCoach() && !chosenExercise())" class="badge badge-light">{{exercise.gymgoerId}}</span>
+          <!-- <span *ngIf="chosenExercise()" class="badge badge-primary">{{exercise.gymgoerId}}</span>
           <button *ngIf="iAmTheCoach() && !chosenExercise()"
             (click)="exercise.chosen = true"
             class="btn btn-sm btn-primary">
             Choose Exercise
-          </button>
+          </button> -->
         </li>
       </ul>
     </div>
